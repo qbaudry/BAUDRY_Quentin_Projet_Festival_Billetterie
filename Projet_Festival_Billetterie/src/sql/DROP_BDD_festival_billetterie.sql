@@ -7,5 +7,5 @@
 -- Version du serveur :  5.7.21-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.28-0ubuntu0.16.04.1
 
-DROP DATABASE IF EXISTS festival_billetterie;
-DROP USER 'festival'@'localhost';
+DROP DATABASE IF EXISTS qbaudry_festival_billetterie;
+DROP USER 'qbaudry_festival'@'localhost';

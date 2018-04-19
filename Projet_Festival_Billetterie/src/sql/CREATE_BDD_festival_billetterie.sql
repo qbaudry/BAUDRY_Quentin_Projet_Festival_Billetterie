@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `festival_billetterie`
 --
-CREATE DATABASE IF NOT EXISTS `festival_billetterie` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `festival_billetterie`;
+CREATE DATABASE IF NOT EXISTS `qbaudry_festival_billetterie` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `qbaudry_festival_billetterie`;
 
 -- --------------------------------------------------------
 
@@ -374,4 +374,4 @@ ALTER TABLE `Representation`
 -- Utilisateur festival
 --
 GRANT USAGE ON *.* TO 'qbaudry_festival'@'localhost' IDENTIFIED BY 'secret';
-GRANT ALL PRIVILEGES ON `festival_billetterie`.* TO 'festival'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `qbaudry_festival_billetterie`.* TO 'qbaudry_festival'@'localhost' WITH GRANT OPTION;
