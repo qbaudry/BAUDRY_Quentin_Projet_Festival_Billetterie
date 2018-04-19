@@ -373,5 +373,5 @@ ALTER TABLE `Representation`
 --
 -- Utilisateur festival
 --
-GRANT USAGE ON *.* TO 'festival'@'localhost' IDENTIFIED BY 'secret';
+GRANT USAGE ON *.* TO 'qbaudry_festival'@'localhost' IDENTIFIED BY 'secret';
 GRANT ALL PRIVILEGES ON `festival_billetterie`.* TO 'festival'@'localhost' WITH GRANT OPTION;
