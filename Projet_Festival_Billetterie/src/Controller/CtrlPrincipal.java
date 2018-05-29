@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author tguyot
+ * @author qbaudry
  */
 public class CtrlPrincipal implements WindowListener, ActionListener {
     
@@ -26,6 +26,9 @@ public class CtrlPrincipal implements WindowListener, ActionListener {
     CtrlUpdate ctrlupdt;
     CtrlLoginBdd ctrlLogBdd;
     
+    //Show: Affiche la vue
+    //Hide: Cache la vue
+    
     public void showRepresentation() {
         ctrlrep = new CtrlLesRepresentations(this);
         ctrlrep.getVue().setVisible(true);
@@ -35,6 +38,7 @@ public class CtrlPrincipal implements WindowListener, ActionListener {
         ctrlrep.getVue().setVisible(false);
     }
 
+    //Affiche la vue d'une réservation en fonction de l'id
     public void showReservation(int id) {
         ctrlres = new CtrlReservation(id, this);
         ctrlres.getVue().setVisible(true);

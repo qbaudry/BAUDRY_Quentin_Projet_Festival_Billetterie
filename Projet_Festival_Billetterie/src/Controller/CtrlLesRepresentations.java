@@ -47,11 +47,14 @@ public class CtrlLesRepresentations implements WindowListener, MouseListener, Ac
      * @param desRepresentations liste des adresses à afficher
      */
     private final void afficherLesRepresentations() {
+        //Récupère toutes les représentations de la BDD
         try {
             lesRepresentations = RepresentationDAO.selectAll();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(getVue(), "CtrlLesRepresentations - échec de sélection des Representations");
         }
+        
+        //Tableau des représentations
         getVue().getModeleTableRepresentation().setRowCount(0);
         String[] titresColonnes = {"DATE", "GROUPE", "LIEU", "DEBUT", "FIN", "PLACE"};
         getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
@@ -109,6 +112,10 @@ public class CtrlLesRepresentations implements WindowListener, MouseListener, Ac
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        //Lorsqu'une ligne du tableau est sélectionner
+        //Récupère l'id de la représentation sélectionné
+        //Affiche la vue Réservation
+        //Cache la vue Représentation
         int row = vue.getjTableRepresentation().getSelectedRow();
         ctrlPrinc.showReservation(lesRepresentations.get(row).getIdRep());
         ctrlPrinc.hideRepresentation();
@@ -132,6 +139,7 @@ public class CtrlLesRepresentations implements WindowListener, MouseListener, Ac
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Si le bouton update database est actionné
         if (e.getSource() == vue.getConnDB()) {
             this.ctrlPrinc.showLogDb();
         }

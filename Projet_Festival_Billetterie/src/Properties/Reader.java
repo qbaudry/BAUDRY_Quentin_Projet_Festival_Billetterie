@@ -10,6 +10,7 @@ import java.util.Properties;
 
 public class Reader {
 
+    //Retourne la valeur de la variable saisie en paramètre du fichier properties
     public static String readString(String searchedString) {
         Properties pReader = new Properties();
         try {

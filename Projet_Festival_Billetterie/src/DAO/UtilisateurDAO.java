@@ -22,8 +22,10 @@ public class UtilisateurDAO {
         String login = DigestUtils.sha256Hex(log);
         String passwrd = DigestUtils.sha256Hex(pswd);
         ResultSet rs = null;
+        //Connexion à la BDD distante avec l'URL
         try (Connection conn = DriverManager.getConnection(Reader.readString("BDD_url"), Reader.readString("BDD_login"), Reader.readString("BDD_mdp"));
                 Statement stmt = conn.createStatement();) {
+            //Vérification de la présence de l'utilisateur dans la BDD distante
             String qry = "SELECT * FROM `Utilisateur` WHERE `Login` LIKE \"" + login + "\"AND `Password` LIKE \"" + passwrd + "\" ";
             rs = stmt.executeQuery(qry);
             while (rs.next()) {

@@ -24,11 +24,12 @@ import javax.swing.WindowConstants;
  */
 public class CtrlLoginBdd implements WindowListener, MouseListener, ActionListener, KeyListener {
 
-    JFrameAuthentification vue = new JFrameAuthentification();
+    JFrameAuthentification vue = new JFrameAuthentification(); // LA VUE
     private CtrlPrincipal ctrlPrin;
 
     public CtrlLoginBdd(CtrlPrincipal ctrlPrin) {
         this.ctrlPrin = ctrlPrin;
+        // le contrôleur écoute la vue
         vue.getjButtonValider().addActionListener(this);
         vue.getjTextFieldLogin().addKeyListener(this);
         vue.getjPasswordFieldMdp().addKeyListener(this);
@@ -102,6 +103,7 @@ public class CtrlLoginBdd implements WindowListener, MouseListener, ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Si le bouton valider est actionné
         if (e.getSource() == vue.getjButtonValider()) {
             testUsrPswd();
         }
@@ -109,10 +111,12 @@ public class CtrlLoginBdd implements WindowListener, MouseListener, ActionListen
 
     @Override
     public void keyTyped(KeyEvent e) {
+        //Bloque le bouton si rien est saisie
         if (vue.getjTextFieldLogin().getText().length() == 0 || vue.getjPasswordFieldMdp().getPassword().length == 0) {
             vue.getjButtonValider().setEnabled(false);
         } else {
             vue.getjButtonValider().setEnabled(true);
+            //Validation avec la touche entrée
             if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                 testUsrPswd();
             }
@@ -128,6 +132,7 @@ public class CtrlLoginBdd implements WindowListener, MouseListener, ActionListen
     }
 
     private void testUsrPswd() {
+        //Vérification de la présence de l'utilisateur dans la BDD distante
         if (UtilisateurDAO.LogIn(vue.getjTextFieldLogin().getText(), String.valueOf(vue.getjPasswordFieldMdp().getPassword()))) {
             ctrlPrin.showUpdate();
             ctrlPrin.hideLogDb();

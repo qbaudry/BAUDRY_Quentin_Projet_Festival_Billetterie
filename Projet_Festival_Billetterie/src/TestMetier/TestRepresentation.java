@@ -48,7 +48,7 @@ public class TestRepresentation {
         System.out.println("Etat de la representation : " + rep);
 
         // Test n°3 : association d'un groupe
-        System.out.println("\nTest n°4 : association d'un groupe");
+        System.out.println("\nTest n°3 : association d'un groupe");
         rep.setGroupe(new Groupe("g002", "Les Joyeux Turlurons2", "Général Alcazar2", "Saint Sébastien sur Loire2" ,25, "France2"));
         System.out.println("Etat du client : " + rep);
         

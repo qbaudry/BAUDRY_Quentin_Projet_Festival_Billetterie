@@ -127,28 +127,13 @@ public class RepresentationDAO {
      * @param nbDePlace 
      */
     public static void updateNbPlace(int id, int nbDePlace) {
+        //Connexion BDD
         try (Connection conn = DriverManager.getConnection(Reader.readString("BDD_url"), Reader.readString("BDD_login"), Reader.readString("BDD_mdp"));
                 Statement stmt = conn.createStatement();) {
+            //Update du nombre de place
             stmt.executeUpdate("UPDATE `Representation` SET `nbPlace`= " + nbDePlace + " WHERE `id` = " + id);
         } catch (Exception e) {
             throw new java.lang.Error("Failed To Execute Statement: \n\r"+e);
         }
     }
-//UPDATE `Representation` SET `nbPlace`=  WHERE `id` = 
-
-    /**
-     * public static int update(String idRepresentation, Representation
-     * unRepresentation) throws SQLException { int nb; Jdbc jdbc =
-     * Jdbc.getInstance(); String requete; ResultSet rs; PreparedStatement
-     * pstmt; requete = "UPDATE REPRESENTATION SET ID = ? , DATE_REP = ?,ID_LIEU
-     * = ? , ID_GROUPE = ? , HEUREDEBUT = ? , HEUREFIN = ? "; pstmt =
-     * jdbc.getConnexion().prepareStatement(requete); pstmt.setString(1,
-     * idRepresentation); pstmt.setDate(2, unRepresentation.getDateRep());
-     * pstmt.setString(3, unRepresentation.getLeLieu()); pstmt.setString(4,
-     * unRepresentation.getLeGroupe()); pstmt.setString(5,
-     * unRepresentation.getHeureDebut()); pstmt.setString(6,
-     * unRepresentation.getHeureFin()); nb = pstmt.executeUpdate(); return nb;
-     *
-     * }
-     */
 }

@@ -28,7 +28,9 @@ public class CtrlReservation implements WindowListener, MouseListener, ActionLis
 
     public CtrlReservation(int id, CtrlPrincipal ctrlPrinc) {
         this.ctrlPrinc = ctrlPrinc;
+        //Sélectionne les données d'une représentation
         rep = RepresentationDAO.selectOne(id);
+        //Affiche les données de la représentation
         vue.getjTextFieldGroupe().setText(rep.getGroupe().getNomGroup());
         vue.getjTextFieldLieu().setText(rep.getLieu().getNomLieu());
         vue.getjTextFieldDate().setText(rep.getDateRep().toString());
@@ -36,7 +38,7 @@ public class CtrlReservation implements WindowListener, MouseListener, ActionLis
         vue.getjTextFieldHeureFin().setText(rep.getHeureFin().toString());
         vue.getjTextFieldNbPlaceTotal().setText(Integer.toString(rep.getLieu().getCapaciteAccueil()));
         vue.getjTextFieldNbPlaceDispo().setText(Integer.toString(rep.getNbPlace()));
-
+        //Combobox du nombre de place souhaité en fonction des places restantes
         vue.getjComboBoxNbPlaceSouhaite().removeAllItems();
         for (int i = 1; i <= rep.getNbPlace(); i++) {
             vue.getjComboBoxNbPlaceSouhaite().addItem(Integer.toString(i));
@@ -111,8 +113,11 @@ public class CtrlReservation implements WindowListener, MouseListener, ActionLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Si le bouton réserver est actionné
         if (e.getSource() == vue.getjButtonReserver()) {
+            //Calcul du nouveau nombre de place (nbPlace initial - nbPlace sélectionné dans la ComboBox)
             int nbplace = rep.getNbPlace() - Integer.parseInt(vue.getjComboBoxNbPlaceSouhaite().getSelectedItem().toString());
+            //Insertion du nouveau nombre de place pour la Représentaion
             RepresentationDAO.updateNbPlace(rep.getIdRep(), nbplace);
             JOptionPane.showMessageDialog(vue,
                     "Commande réussie. \nIl reste " + nbplace + " place(s).",
@@ -121,6 +126,7 @@ public class CtrlReservation implements WindowListener, MouseListener, ActionLis
             ctrlPrinc.showRepresentation();
             vue.setVisible(false);
         }
+        //Si le bouton quitter est actionné
         if (e.getSource() == vue.getJButtonBack()) {
             ctrlPrinc.showRepresentation();
             vue.setVisible(false);
